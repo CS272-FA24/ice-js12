@@ -4,4 +4,11 @@ h2 {
 
 .bi-star, .bi-star-fill {
     cursor: pointer;
+    position: absolute;
+    top: .25em;
+    right: .25em;
+}
+
+.card {
+    position: relative;
 }

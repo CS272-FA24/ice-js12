@@ -15,8 +15,8 @@ function createCourseComponent(courseData) {
     newCardDivNode.className = "card m-2 p-2";
 
     const newStarNode = document.createElement("span");
-    newStarNode.style.float = "right"
-    newStarNode.className = "bi-star"
+    newStarNode.style.float = "right";
+    newStarNode.className = "bi-star";
     newStarNode.addEventListener("click", () => {
         if (newStarNode.className === "bi-star") {
             newStarNode.className = "bi-star-fill";

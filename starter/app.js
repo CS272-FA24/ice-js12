@@ -2,9 +2,7 @@ const COURSES = getCourseList();
 
 const courseDivNode = document.getElementById("course-list")
 
-COURSES
-    .map(c => createCourseComponent(c))
-    .forEach(n => courseDivNode.appendChild(n));
+// TODO #1 Insert many course components into the courseDivNode!
 
 function createCourseComponent(courseData) {
     const newColDivNode = document.createElement("div");
@@ -15,24 +13,15 @@ function createCourseComponent(courseData) {
     newCardDivNode.className = "card m-2 p-2";
 
     const newStarNode = document.createElement("span");
-    newStarNode.style.float = "right"
-    newStarNode.className = "bi-star"
-    newStarNode.addEventListener("click", () => {
-        if (newStarNode.className === "bi-star") {
-            newStarNode.className = "bi-star-fill";
-        } else {
-            newStarNode.className = "bi-star";
-        }
-    })
+    newStarNode.style.float = "right";
+    newStarNode.className = "bi-star";
+    // TODO #2 Add an event listener to the star to make it clickable!
+    //         You can use the class name of bi-star-fill
 
     const newBadgesDivNode = document.createElement("div");
     newBadgesDivNode.style.display = "flex";
-    courseData.keywords.forEach(word => {
-        const newBadgeNode = document.createElement("p");
-        newBadgeNode.className = "badge text-bg-secondary me-2"
-        newBadgeNode.innerText = word;
-        newBadgesDivNode.appendChild(newBadgeNode)
-    })
+    // TODO #3 Add a badge for each one of the keywords
+    //         https://getbootstrap.com/docs/5.3/components/badge/
 
     const newTitleNode = document.createElement("h2");
     newTitleNode.innerText = `${courseData.id}: ${courseData.name}`;
@@ -43,13 +32,14 @@ function createCourseComponent(courseData) {
 
     const newDescNode = document.createElement("p");
     newDescNode.id = `course-${courseData.id}-description`;
-    newDescNode.innerText = courseData.description.substring(0, 200) + "...";
+    newDescNode.innerText = courseData.description;
 
     const newReadMoreNode = document.createElement("button");
     newReadMoreNode.id = `course-${courseData.id}-btn`;
     newReadMoreNode.className = "btn btn-outline-secondary";
     newReadMoreNode.innerText = "Read More"
-    newReadMoreNode.addEventListener("click", () => handleReadMore(courseData));
+    // TODO #4 Implement the button such that it toggles the amount
+    //         of description that is being shown (e.g. 200 characters)
 
     newTitleNode.appendChild(newStarNode);
 
@@ -63,17 +53,3 @@ function createCourseComponent(courseData) {
 
     return newColDivNode;
 }
-
-function handleReadMore(data) { 
-    const descNode = document.getElementById(`course-${data.id}-description`);
-    const toggleBtn = document.getElementById(`course-${data.id}-btn`);
-
-    if(toggleBtn.innerText === "Read More") {
-        descNode.innerText = data.description;
-        toggleBtn.innerText = "Read Less";
-    } else {
-        descNode.innerText = data.description.substring(0, 200) + "...";
-        toggleBtn.innerText = "Read More";
-    }
-}
-
